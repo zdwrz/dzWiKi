@@ -21,7 +21,7 @@ public class NaviController {
         if(Constants.JAVA.equalsIgnoreCase(path)){
             //load Java data
             List<WikiInfo> wikiList = new ArrayList<>();
-            wikiList.add(new WikiInfo());
+            wikiList.add(new WikiInfo("123"));
             model.addAttribute("wikiList", wikiList);
         }
         return path;

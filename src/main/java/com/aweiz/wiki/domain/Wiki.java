@@ -4,9 +4,18 @@ package com.aweiz.wiki.domain;
  * Created by daweizhuang on 4/27/16.
  */
 public class Wiki {
+    private String id;
     private String title;
     private String content;
     private String category;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

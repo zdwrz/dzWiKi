@@ -15,15 +15,15 @@
         <div class="bs-docs-section clearfix">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="page-header">
-                        <h3 class="bs-component">${wiki.dummyWikiTitle}</h3>
+                    <div class="page-header" >
+                        <h3 class="bs-component" id="title_${wiki.id}">${wiki.dummyWikiTitle}</h3>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="content_wiki">
-                        <p class="bs-component">${wiki.dummyWikiContent}</p>
+                    <div class="content_wiki" >
+                        <p class="bs-component" id="content_${wiki.id}">${wiki.dummyWikiContent}</p>
                     </div>
                 </div>
             </div>

@@ -13,6 +13,11 @@ public class WikiInfo {
     private String priority;
     private String category;
     private String label;
+    private String id;
+
+    public WikiInfo(String s) {
+        id = s;
+    }
 
     public String getTitle() {
         return title;
@@ -59,6 +64,14 @@ public class WikiInfo {
     }
     public String getDummyWikiContent(){
         return " Here is the random Content, skdjfskdjf ksdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj";
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override

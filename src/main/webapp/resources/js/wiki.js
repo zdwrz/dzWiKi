@@ -15,19 +15,19 @@ $(window).load(function(){
 });//]]>
     
 $(function(){
-    var $button = $("<div id='edit-button' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-pencil'></span>Edit</div>").click(function(){
+    var $button = $("<div id='edit-button' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-pencil'></span>Edit</div>").click(function(event){
         // var html = $(this).parent().html();
         // html = cleanSource(html);
         // $("#source-modal pre").text(html);
         // $("#source-modal").modal();
-        alert("A");
+        var clickedID = $(this).closest('.bs-component').attr('id');
     });
     var $button_delete = $("<div id='delete-button' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-trash'></span>Delete</div>").click(function(){
         // var html = $(this).parent().html();
         // html = cleanSource(html);
         // $("#source-modal pre").text(html);
         // $("#source-modal").modal();
-        alert("A");
+        var clickedID = $(this).closest('.bs-component').attr('id');
     });
 
     // $('.bs-component [data-toggle="popover"]').popover();
