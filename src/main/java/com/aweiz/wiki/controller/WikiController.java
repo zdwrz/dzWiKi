@@ -26,7 +26,7 @@ public class WikiController {
         WikiInfo wikiInfo = new WikiInfo("random123");
         wikiInfo.setTitle(form.getTitle());
         wikiInfo.setContent(form.getContent());
-
+        wikiInfo.setId("random123");
         return wikiInfo;
     }
     @RequestMapping(value="/delete", method = RequestMethod.POST)

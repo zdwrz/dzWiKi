@@ -32,6 +32,7 @@ $(window).load(function(){
     (function(){
         $('#edit_read_button').on(
             'click', function(){
+                $("#new_wiki_link").toggle();
                 if ( $(this).text()== "Edit Mode") {
                     $(this).text('Read Mode');
                     window.enableEdit = false;
@@ -88,7 +89,7 @@ $(function(){
 
 function updateNewContents(msg) {
     var $newWiki = $("<div class='bs-docs-section clearfix'> <div class='row'> <div class='col-lg-12'> " +
-        "<div class='page-header wiki-title'><h3 class='bs-component'>" + msg.title + "</h3> </div> </div></div> " +
+        "<div class='page-header wiki-title'><h3 class='bs-component' id='title_"+msg.id+"'>"+ msg.title + "</h3> </div> </div></div> " +
         "<div class='row'> <div class='col-lg-12'> " +
         "<div class='content_wiki'> <p class='bs-component'>" + msg.content + "</p> </div> </div> </div> </div>").hide().fadeIn(600);
 
@@ -126,7 +127,7 @@ $(function () {
                 //close the dialog
                 $('#new_wiki_modal_dialog').modal('toggle');
                 //show success msg
-                $("#success_msg").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+                $("#success_msg").text("Created new Wiki.").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
                 //re - enable the button
                 submit_button.button('reset');
                 //re-enable the form inputs
@@ -162,7 +163,7 @@ $(function () {
                 //close the dialog
                 $('#delete_wiki_modal_dialog').modal('toggle');
                 //show success msg
-                $("#success_msg").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+                $("#success_msg").text("Deleted").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
                 //re - enable the button
                 delete_button.button('reset');
                 //update the content

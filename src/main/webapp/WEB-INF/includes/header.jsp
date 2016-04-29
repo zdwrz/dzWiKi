@@ -17,7 +17,7 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/wiki/home">DZ Wiki</a>
+            <a class="navbar-brand" data-toggle="modal" data-target="#intro_modal_dialog">DZ Wiki</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -45,7 +45,7 @@
                 <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" data-toggle="modal" data-target="#new_wiki_modal_dialog">New Wiki</a></li>
+                <li id="new_wiki_link" style="display: none"><a href="#" data-toggle="modal" data-target="#new_wiki_modal_dialog">New Wiki</a></li>
                 <li><a href="#" id="edit_read_button">Read Mode</a></li>
             </ul>
         </div>
@@ -53,5 +53,24 @@
 </nav>
 <div class="alert-box success" id="success_msg">Successfully Created a new Wiki.</div>
 <div class="alert-box failure" id="error_msg">Fail</div>
+<div class="modal fade" id="intro_modal_dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">About Me</h4>
+            </div>
+                <div class="modal-body">
+                    <blockquote>
+                        <p>The whole side is developed by Me. Of course with the help of JQuery, Boostrap, Fontawesome, Spring, and MongoDB.</p>
+                    </blockquote>
+                    <blockquote class="blockquote-reverse">
+                        <p>It is intended to record my knowledge as much as I can since I have a family history of Alzheimer's.</p>
+                        <small>Dawei Zhuang</small>
+                    </blockquote>
+                </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
