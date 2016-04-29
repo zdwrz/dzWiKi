@@ -46,7 +46,7 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#" data-toggle="modal" data-target="#new_wiki_modal_dialog">New Wiki</a></li>
-                <li><a href="#">Edit/Read</a></li>
+                <li><a href="#" id="edit_read_button">Read Mode</a></li>
             </ul>
         </div>
     </div>

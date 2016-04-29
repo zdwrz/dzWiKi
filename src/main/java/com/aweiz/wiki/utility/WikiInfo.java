@@ -15,6 +15,9 @@ public class WikiInfo {
     private String label;
     private String id;
 
+    public WikiInfo() {
+
+    }
     public WikiInfo(String s) {
         id = s;
     }
@@ -63,7 +66,33 @@ public class WikiInfo {
         return " Here is the random title";
     }
     public String getDummyWikiContent(){
-        return " Here is the random Content, skdjfskdjf ksdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj";
+        return " Here is the random Content, skdjfskdjf kssf sdf " +
+                "sd fsdf sdf sdf sdf sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk js" +
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
+                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj";
+    }
+    public String getDummyWikiContentBrief(){
+        return " Here is the random Content, sd fj";
     }
 
     public String getId() {

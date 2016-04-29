@@ -6,14 +6,13 @@ import com.aweiz.wiki.utility.WikiInfo;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by daweizhuang on 4/27/16.
  */
 @Controller
+@RequestMapping("/wiki")
 public class WikiController {
 
     private static Logger LOGGER = Logger.getLogger(WikiController.class);
@@ -21,13 +20,19 @@ public class WikiController {
     @Autowired
     private WikiService wikiService;
 
-    @RequestMapping(value="/wiki/save/", method = RequestMethod.POST)
-    public @ResponseBody Wiki saveWiki( WikiInfo form){
+    @RequestMapping(value="/save", method = RequestMethod.POST)
+    public @ResponseBody WikiInfo saveWiki( WikiInfo form){
         LOGGER.info("Got this from client: " + form);
-        Wiki wiki = new Wiki();
-        wiki.setTitle(form.getTitle());
-        wiki.setContent(form.getContent());
+        WikiInfo wikiInfo = new WikiInfo("random123");
+        wikiInfo.setTitle(form.getTitle());
+        wikiInfo.setContent(form.getContent());
 
-        return wiki;
+        return wikiInfo;
+    }
+    @RequestMapping(value="/delete", method = RequestMethod.POST)
+    public @ResponseBody WikiInfo deleteWiki(@RequestParam("id") String wikiId){
+        LOGGER.info("Got this from client: " + wikiId);
+        WikiInfo wi = new WikiInfo(wikiId);
+        return wi;
     }
 }
