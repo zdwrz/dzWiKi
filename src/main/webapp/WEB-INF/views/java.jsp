@@ -14,6 +14,7 @@
     </div>
 
     <c:forEach var="wiki" items="${wikiList}">
+        <c:if test="${wiki.id != '0'}">
         <div class="bs-docs-section clearfix">
             <div class="row">
                 <div class="col-lg-12">
@@ -32,6 +33,7 @@
                 </div>
             </div>
         </div>
+        </c:if>
     </c:forEach>
 
 </div>

@@ -2,11 +2,14 @@ package com.aweiz.wiki.controller;
 
 import com.aweiz.wiki.domain.Wiki;
 import com.aweiz.wiki.service.WikiService;
+import com.aweiz.wiki.utility.Constants;
 import com.aweiz.wiki.utility.WikiInfo;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by daweizhuang on 4/27/16.
@@ -39,5 +42,19 @@ public class WikiController {
 
         WikiInfo wi = wikiService.updateWiki(form.getWiki());
         return wi;
+    }
+    @RequestMapping(value="/loadMore", method = RequestMethod.POST)
+    public @ResponseBody
+    List<WikiInfo> loadMoreWiki(@RequestParam("dataOffSet") Integer offset){
+        LOGGER.info("Got this from client: " + offset);
+
+        return wikiService.loadWikiInfo(Constants.JAVA,offset,Constants.ORDER_TOUCHED_DATE);
+    }
+    @RequestMapping(value="/search", method = RequestMethod.POST)
+    public @ResponseBody
+    List<WikiInfo> searchWiki(@RequestParam("searchInput") String key){
+        LOGGER.info("Got this from client: " + key);
+
+        return wikiService.searchWikiInfo(key);
     }
 }

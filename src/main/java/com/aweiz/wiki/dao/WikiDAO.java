@@ -18,4 +18,6 @@ public interface WikiDAO {
     void remove(String wikiId);
 
     Wiki updateWiki(Wiki wiki);
+
+    List<Wiki> searchWikiByKeyword(String key);
 }

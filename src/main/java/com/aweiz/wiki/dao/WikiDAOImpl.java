@@ -61,4 +61,9 @@ public class WikiDAOImpl implements WikiDAO {
         mongoTemp.save(entity);
         return entity;
     }
+
+    @Override
+    public List<Wiki> searchWikiByKeyword(String key) {
+        return null;
+    }
 }

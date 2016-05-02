@@ -40,9 +40,9 @@
             </ul>
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search"/>
+                    <input type="text" class="form-control" placeholder="Search" id="search_input"/>
                 </div>
-                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                <button type="button" class="btn btn-default" id="search_button"><span class="glyphicon glyphicon-search"></span></button>
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li id="new_wiki_link" style="display: none"><a href="#" data-toggle="modal" data-target="#new_wiki_modal_dialog"><span class='glyphicon glyphicon-plus'></span>New Wiki</a></li>

@@ -4,14 +4,39 @@
 //<![CDATA[
 
 window.enableEdit = false;
+window.dataOffSet = 10;
+window.loadingNew = false;
+window.stopload = false;
 $(window).load(function(){
     $(window).scroll(function() {
         if($(window).scrollTop() + $(window).height() == $(document).height()) {
-            //  $("#main_container").append("<div>a</div>");
-            var new_element = $("<div>a</div><div>a</div><div>a</div><div>a</div><div>a</div>"+
-                "<div>a</div><div>a</div><div>a</div><div>a</div><div>a</div>" + "<div>a</div><div>a</div><div>a</div><div>a</div><div>a</div>"+
-                "<div>a</div><div>a</div><div>a</div><div>a</div><div>a</div>");
-            new_element.hide().appendTo('#main_container').fadeIn();
+            if(window.loadingNew || window.stopload){ return ;}
+            window.loadingNew = true;
+            $.ajax({
+                type: 'POST',
+                dataType:'json',
+                url: '/wiki/loadMore/',
+                data: {"dataOffSet":dataOffSet},
+                success: function (msg) {
+                    window.dataOffSet += 10;
+                    msg.forEach(function(item){
+                        if(item.id == 0){window.stopload = true; return false;}
+                        var new_element = $('<div class="bs-docs-section clearfix"> </div>');
+                        new_element.append('<div class="row"><div class="col-lg-12"><div class="page-header wiki-title" ><h3 class="bs-component" id="'+ item.id +'">'+item.title+'</h3></div></div></div>');
+                        new_element.append('<div class="row"><div class="col-lg-12"><div class="content_wiki" ><p class="content_desc" >'+ item.wikiContentBrief+' </p><p class="content_full" style="display: none" id="full_content_'+item.id+'">'+item.wikiContent+'</p> <span class="more">more...</span></div></div></div>');
+                        new_element.hide().appendTo('#main_container').fadeIn();
+                    });
+                },
+                error: function( jqXHR, textStatus){
+                    if(textStatus == 'timeout'){
+                        $("#error_msg").text('Cannot Load new records. Timeout.').fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+                    }else{
+                        alert(textStatus);
+                    }
+                },
+                timeout: 10000
+            });
+            window.loadingNew = false;
         }
     });
 
@@ -64,15 +89,42 @@ $(function(){
     });
 
     $('#main_container').on('click','.more',function(){
-            $(this).siblings(".content_full").toggle();
-            $(this).siblings(".content_desc").toggle();
-            if ( $(this).siblings(".content_full").css("display") == "none") {
-                $(this).text('More...');
-            }else{
-                $(this).text('Less...');
-            }
+        $(this).siblings(".content_full").toggle();
+        $(this).siblings(".content_desc").toggle();
+        if ( $(this).siblings(".content_full").css("display") == "none") {
+            $(this).text('More...');
+        }else{
+            $(this).text('Less...');
         }
-    );
+    });
+
+    $('#search_button').click(function(){
+        var search_input = $('#search_input').val();
+        $.ajax({
+            type: 'POST',
+            dataType:'json',
+            url: '/wiki/search/',
+            data: {"searchInput":search_input},
+            success: function (msg) {
+                msg.forEach(function(item){
+                    // if(item.id == 0){window.stopload = true; return false;}
+                    // var new_element = $('<div class="bs-docs-section clearfix"> </div>');
+                    // new_element.append('<div class="row"><div class="col-lg-12"><div class="page-header wiki-title" ><h3 class="bs-component" id="'+ item.id +'">'+item.title+'</h3></div></div></div>');
+                    // new_element.append('<div class="row"><div class="col-lg-12"><div class="content_wiki" ><p class="content_desc" >'+ item.wikiContentBrief+' </p><p class="content_full" style="display: none" id="full_content_'+item.id+'">'+item.wikiContent+'</p> <span class="more">more...</span></div></div></div>');
+                    // new_element.hide().appendTo('#main_container').fadeIn();
+                    alert('got this many' + item.size());
+                });
+            },
+            error: function( jqXHR, textStatus){
+                if(textStatus == 'timeout'){
+                    $("#error_msg").text('Error in Search, Timeout.').fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+                }else{
+                    alert(textStatus);
+                }
+            },
+            timeout: 10000
+        });
+    });
 
 });
 
@@ -83,6 +135,7 @@ function updateNewContents(msg) {
         "<div class='content_wiki'> <p class='content_desc'>" + msg.wikiContentBrief + "</p> <p class='content_full' style='display: none'>"+ msg.wikiContent+"</p> <span class='more'>more...</span></div> </div> </div> </div>").hide().fadeIn(800);
 
     $('#banner').after($newWiki);
+
 }
 function updateEditContents(msg) {
     updateDeleteContents(msg);
@@ -91,6 +144,7 @@ function updateEditContents(msg) {
 
 function updateDeleteContents(msg) {
     $("#" + msg.id).closest(".bs-docs-section").fadeOut(800);
+
 }
 
 $(function () {
@@ -128,6 +182,7 @@ $(function () {
                 $("#create_new_form :input").prop("disabled", false);
                 //update the content
                 updateNewContents(msg);
+                window.dataOffSet += 1;
             },
             error: function( jqXHR, textStatus, errorThrown){
                 if(textStatus == 'timeout'){
@@ -162,6 +217,7 @@ $(function () {
                 delete_button.button('reset');
                 //update the content
                 updateDeleteContents(msg);
+                window.dataOffSet -= 1;
             },
             error: function( jqXHR, textStatus, errorThrown){
                 if(textStatus == 'timeout'){

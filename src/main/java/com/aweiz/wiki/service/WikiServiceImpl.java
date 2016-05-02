@@ -40,6 +40,13 @@ public class WikiServiceImpl implements WikiService {
     public List<WikiInfo> loadWikiInfo(String type, int offset, String order) {
         List<WikiInfo> resList = new ArrayList<>();
         List<Wiki> wikiList = wikiDAO.loadWiki(type,offset,order);
+        if(wikiList.size() < Constants.STEP_SIZE){
+            WikiInfo endWiki = new WikiInfo();
+            endWiki.setId("0");
+            endWiki.setTitle("This is the last one.");
+            endWiki.setContent("This is the last wiki.");
+            resList.add(endWiki);
+        }
         for (Wiki wiki : wikiList) {
             resList.add(new WikiInfo(wiki));
         }
@@ -55,4 +62,15 @@ public class WikiServiceImpl implements WikiService {
     public WikiInfo updateWiki(Wiki wiki) {
         return new WikiInfo(wikiDAO.updateWiki(wiki));
     }
+
+    @Override
+    public List<WikiInfo> searchWikiInfo(String key) {
+        List<WikiInfo> resList = new ArrayList<>();
+        List<Wiki> wikiList = wikiDAO.searchWikiByKeyword(key);
+        for (Wiki wiki : wikiList) {
+            resList.add(new WikiInfo(wiki));
+        }
+        return resList;
+    }
+
 }

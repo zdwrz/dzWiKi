@@ -18,4 +18,6 @@ public interface WikiService {
     void removeWiki(String wikiId);
 
     WikiInfo updateWiki(Wiki wiki);
+
+    List<WikiInfo> searchWikiInfo(String key);
 }
