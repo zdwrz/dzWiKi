@@ -16,20 +16,6 @@ $(window).load(function(){
     });
 
     (function(){
-        $('.more').on(
-            'click', function(){
-                $(this).siblings(".content_full").toggle();
-                $(this).siblings(".content_desc").toggle();
-                if ( $(this).siblings(".content_full").css("display") == "none") {
-                    $(this).text('More...');
-                }else{
-                    $(this).text('Less...');
-                }
-            }
-        );
-    })();
-
-    (function(){
         $('#edit_read_button').on(
             'click', function(){
                 $("#new_wiki_link").toggle();
@@ -52,25 +38,18 @@ $(function(){
     var $button = $("<div id='edit-button' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-pencil'></span>Edit</div>").click(function(event){
         window.wikiId = $(this).siblings('.bs-component').attr('id');
         $('#update_wiki_modal_dialog').modal('toggle');
+        var title = $("#"+wikiId).text();
+        $("#edit_title").val(title);
+        var content = $("#full_content_"+wikiId).text();
+        $("#edit_content").val(content);
 
+       //edit_title.text(title);
+       // alert(title);
     });
     var $button_delete = $("<div id='delete-button' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-trash'></span>Delete</div>").click(function(){
         window.wikiId = $(this).siblings('.bs-component').attr('id');
         $('#delete_wiki_modal_dialog').modal('toggle');
     });
-
-    // $('.bs-component [data-toggle="popover"]').popover();
-    // $('.bs-component [data-toggle="tooltip"]').tooltip();
-
-    // $(".bs-component").hover(function(){
-    //     $(this).append($button);
-    //     $(this).append($button_delete);
-    //     $button.show();
-    //     $button_delete.show();
-    // }, function(){
-    //     $button.hide();
-    //     $button_delete.hide();
-    // });
 
     $( "#main_container" ).on( "mouseenter", ".wiki-title", function(event) {
         if (enableEdit == true) {
@@ -83,18 +62,33 @@ $(function(){
             $button.hide();
             $button_delete.hide();
     });
-   
+
+    $('#main_container').on('click','.more',function(){
+            $(this).siblings(".content_full").toggle();
+            $(this).siblings(".content_desc").toggle();
+            if ( $(this).siblings(".content_full").css("display") == "none") {
+                $(this).text('More...');
+            }else{
+                $(this).text('Less...');
+            }
+        }
+    );
 
 });
 
 function updateNewContents(msg) {
     var $newWiki = $("<div class='bs-docs-section clearfix'> <div class='row'> <div class='col-lg-12'> " +
-        "<div class='page-header wiki-title'><h3 class='bs-component' id='title_"+msg.id+"'>"+ msg.title + "</h3> </div> </div></div> " +
+        "<div class='page-header wiki-title'><h3 class='bs-component' id='title_"+msg.id+"'>"+ msg.wikiTitle + "</h3> </div> </div></div> " +
         "<div class='row'> <div class='col-lg-12'> " +
-        "<div class='content_wiki'> <p class='bs-component'>" + msg.content + "</p> </div> </div> </div> </div>").hide().fadeIn(600);
+        "<div class='content_wiki'> <p class='content_desc'>" + msg.wikiContentBrief + "</p> <p class='content_full' style='display: none'>"+ msg.wikiContent+"</p> <span class='more'>more...</span></div> </div> </div> </div>").hide().fadeIn(800);
 
     $('#banner').after($newWiki);
 }
+function updateEditContents(msg) {
+    updateDeleteContents(msg);
+    updateNewContents(msg);
+}
+
 function updateDeleteContents(msg) {
     $("#" + msg.id).closest(".bs-docs-section").fadeOut(800);
 }
@@ -177,6 +171,47 @@ $(function () {
                     alert(textStatus + jqXHR + errorThrown);
                     delete_button.button('reset');
                 }
+            },
+            timeout: 10000
+        });
+    });
+
+    $('#update_form').on('submit', function (e) {
+        var update_button = $(this).find("#save_update_button");
+        //give button loading state
+        update_button.button('loading');
+
+        e.preventDefault();
+        var title = $("#edit_title").val();
+        var content = $("#edit_content").val();
+        $("#update_form :input").prop("disabled", true);
+        $.ajax({
+            type: 'POST',
+            dataType:'json',
+            url: '/wiki/update/',
+            data: {"id":wikiId,"title":title,"content":content},
+            success: function (msg) {
+                //clear
+                $('#update_form').find("input[type=text], textarea").val("");
+                //close the dialog
+                $('#update_wiki_modal_dialog').modal('toggle');
+                //show success msg
+                $("#success_msg").text("Updated").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+                //re - enable the button
+                update_button.button('reset');
+                //update the content
+                updateEditContents(msg);
+                $("#update_form :input").prop("disabled", false);
+            },
+            error: function( jqXHR, textStatus, errorThrown){
+                if(textStatus == 'timeout'){
+                    $("#error_msg").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+                    update_button.button('reset');
+                }else{
+                    alert(textStatus + jqXHR + errorThrown);
+                    update_button.button('reset');
+                }
+                $("#update_form :input").prop("disabled", false);
             },
             timeout: 10000
         });

@@ -2,115 +2,108 @@ package com.aweiz.wiki.utility;
 
 import com.aweiz.wiki.domain.Wiki;
 
+import java.util.Date;
 import java.util.Random;
 
 /**
  * Created by daweizhuang on 4/27/16.
  */
 public class WikiInfo {
-    private String title;
-    private String content;
-    private String priority;
-    private String category;
-    private String label;
-    private String id;
+    private Wiki wiki;
 
     public WikiInfo() {
-
+        wiki = new Wiki();
     }
-    public WikiInfo(String s) {
-        id = s;
+    public WikiInfo(String id, String title, String content) {
+        wiki = new Wiki();
+        wiki.setId(id);
+        wiki.setTitle(title);
+        wiki.setContent(content);
+    }
+
+    public WikiInfo(Wiki wiki) {
+        this.wiki = wiki;
+    }
+
+    public Wiki getWiki() {
+        return wiki;
+    }
+
+    public void setWiki(Wiki wiki) {
+        this.wiki = wiki;
     }
 
     public String getTitle() {
-        return title;
+        return wiki.getTitle();
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        wiki.setTitle(title);
     }
 
     public String getContent() {
-        return content;
+        return wiki.getContent();
     }
 
     public void setContent(String content) {
-        this.content = content;
+        wiki.setContent(content);
     }
 
     public String getPriority() {
-        return priority;
+        return wiki.getPriority();
     }
 
     public void setPriority(String priority) {
-        this.priority = priority;
+        wiki.setPriority(priority);
     }
 
     public String getCategory() {
-        return category;
+        return wiki.getCategory();
     }
 
     public void setCategory(String category) {
-        this.category = category;
+        wiki.setCategory(category);
     }
 
-    public String getLabel() {
-        return label;
+    public String[] getLabel() {
+        return wiki.getLabel();
     }
 
     public void setLabel(String label) {
-        this.label = label;
+        if(label != null) {
+            String[] res = label.split(" ");
+            wiki.setLabel(res);
+        }
     }
 
-    public String getDummyWikiTitle(){
-        return " Here is the random title";
+    public String getWikiTitle(){
+        return this.getTitle();
     }
-    public String getDummyWikiContent(){
-        return " Here is the random Content, skdjfskdjf kssf sdf " +
-                "sd fsdf sdf sdf sdf sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk js" +
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj"+
-                "sd fsdfsdfsdfdfk jskdfj ksjdfkj sdkfj skdljf laksdjf ksjdf lajsdf jasldfj asljdf kjsadflk jsdkjf slkd fjsalkdjf slkdjf laksdjf klasjdf kajsdlfk jaslkdj falksd fj";
+    public String getWikiContent(){
+        return this.getContent();
     }
-    public String getDummyWikiContentBrief(){
-        return " Here is the random Content, sd fj";
+    public String getWikiContentBrief(){
+        String brief = null;
+        if(this.getContent().length() > 400){
+            brief = this.getContent().substring(0,400);
+        }else{
+            brief = this.getContent();
+        }
+        return brief;
     }
 
     public String getId() {
-        return id;
+        return wiki.getId();
     }
 
     public void setId(String id) {
-        this.id = id;
+        wiki.setId(id);
     }
 
-    @Override
-    public String toString() {
-        return "WikiInfo{" +
-                "title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", priority='" + priority + '\'' +
-                ", category='" + category + '\'' +
-                ", label='" + label + '\'' +
-                '}';
+    public Date getTouchedDate(){ return wiki.getTouchedDate();}
+
+    public void setTouchedDate(Date date) {
+        wiki.setTouchedDate(date);
     }
+
 }

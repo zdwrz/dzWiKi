@@ -5,4 +5,6 @@ package com.aweiz.wiki.utility;
  */
 public class Constants {
     public static final String JAVA = "Java";
+    public static final int STEP_SIZE = 10;
+    public static final String ORDER_TOUCHED_DATE = "touchedDate";
 }

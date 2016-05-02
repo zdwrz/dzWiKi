@@ -45,7 +45,7 @@
                 <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li id="new_wiki_link" style="display: none"><a href="#" data-toggle="modal" data-target="#new_wiki_modal_dialog">New Wiki</a></li>
+                <li id="new_wiki_link" style="display: none"><a href="#" data-toggle="modal" data-target="#new_wiki_modal_dialog"><span class='glyphicon glyphicon-plus'></span>New Wiki</a></li>
                 <li><a href="#" id="edit_read_button">Read Mode</a></li>
             </ul>
         </div>

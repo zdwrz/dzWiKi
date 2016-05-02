@@ -23,16 +23,21 @@ public class WikiController {
     @RequestMapping(value="/save", method = RequestMethod.POST)
     public @ResponseBody WikiInfo saveWiki( WikiInfo form){
         LOGGER.info("Got this from client: " + form);
-        WikiInfo wikiInfo = new WikiInfo("random123");
-        wikiInfo.setTitle(form.getTitle());
-        wikiInfo.setContent(form.getContent());
-        wikiInfo.setId("random123");
-        return wikiInfo;
+        wikiService.saveWiki(form.getWiki());
+        return form;
     }
     @RequestMapping(value="/delete", method = RequestMethod.POST)
     public @ResponseBody WikiInfo deleteWiki(@RequestParam("id") String wikiId){
         LOGGER.info("Got this from client: " + wikiId);
-        WikiInfo wi = new WikiInfo(wikiId);
+        WikiInfo wi = new WikiInfo(wikiId,"","");
+        wikiService.removeWiki(wikiId);
+        return wi;
+    }
+    @RequestMapping(value="/update", method = RequestMethod.POST)
+    public @ResponseBody WikiInfo updateWiki(WikiInfo form){
+        LOGGER.info("Got this from client: " + form.getId() +" Content:" +form.getContent()+" Title: " + form.getTitle());
+
+        WikiInfo wi = wikiService.updateWiki(form.getWiki());
         return wi;
     }
 }

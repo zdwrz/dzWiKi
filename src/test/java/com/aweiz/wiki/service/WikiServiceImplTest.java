@@ -1,5 +1,6 @@
 package com.aweiz.wiki.service;
 
+import com.aweiz.wiki.domain.Wiki;
 import com.aweiz.wiki.test.AppTestConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -23,6 +25,15 @@ public class WikiServiceImplTest {
     private WikiService wikiService;
     @Test
     public void saveWiki() throws Exception {
-        wikiService.saveWiki("testTitle","testContent12345","Java");
+        for(int i = 0 ; i < 100; i ++){
+            Wiki wiki = new Wiki();
+            wiki.setTitle("Test" + i);
+            wiki.setContent("Test "+i+" content...... 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123");
+            wiki.setTouchedDate(new Date());
+            wiki.setCategory("java");
+            wiki.setLabel(new String[]{"test"});
+            wiki.setPriority("low");
+            wikiService.saveWiki(wiki);
+        }
     }
 }

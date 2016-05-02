@@ -18,21 +18,20 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="page-header wiki-title" >
-                        <h3 class="bs-component" id="title_${wiki.id}">${wiki.dummyWikiTitle}</h3>
+                        <h3 class="bs-component" id="${wiki.id}">${wiki.wikiTitle}</h3>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="content_wiki" >
-                        <p class="content_desc" > ${wiki.dummyWikiContentBrief} </p>
-                        <p class="content_full" style="display: none"> ${wiki.dummyWikiContent}</p>
+                        <p class="content_desc" > ${wiki.wikiContentBrief} </p>
+                        <p class="content_full" style="display: none" id="full_content_${wiki.id}">${wiki.wikiContent}</p>
                         <span class="more">more...</span>
                     </div>
                 </div>
             </div>
         </div>
-
     </c:forEach>
 
 </div>
