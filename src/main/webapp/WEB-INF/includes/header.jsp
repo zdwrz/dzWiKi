@@ -60,15 +60,15 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">About Me</h4>
             </div>
-                <div class="modal-body">
-                    <blockquote>
-                        <p>The whole side is developed by Me. Of course with the help of JQuery, Boostrap, Fontawesome, Spring, and MongoDB.</p>
-                    </blockquote>
-                    <blockquote class="blockquote-reverse">
-                        <p>It is intended to record my knowledge as much as I can since I have a family history of Alzheimer's.</p>
-                        <small>Dawei Zhuang</small>
-                    </blockquote>
-                </div>
+            <div class="modal-body">
+                <blockquote>
+                    <p>The whole side is developed by Me. Of course with the help of JQuery, Boostrap, Fontawesome, Spring, and MongoDB.</p>
+                </blockquote>
+                <blockquote class="blockquote-reverse">
+                    <p>It is intended to record my knowledge as much as I can since I have a family history of Alzheimer's.</p>
+                    <small>Dawei Zhuang</small>
+                </blockquote>
+            </div>
         </div>
     </div>
 </div>

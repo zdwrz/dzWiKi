@@ -2,6 +2,7 @@ package com.aweiz.wiki.service;
 
 import com.aweiz.wiki.domain.Wiki;
 import com.aweiz.wiki.test.AppTestConfig;
+import com.aweiz.wiki.utility.WikiInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class WikiServiceImplTest {
     private WikiService wikiService;
     @Test
     public void saveWiki() throws Exception {
-        for(int i = 0 ; i < 3; i ++){
+        for(int i = 0 ; i < 30; i ++){
             Wiki wiki = new Wiki();
             wiki.setTitle("Test" + i);
             wiki.setContent("Test "+i+" content...... 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123 123");
@@ -36,4 +37,14 @@ public class WikiServiceImplTest {
             wikiService.saveWiki(wiki);
         }
     }
+
+    @Test
+    public void textSearchWiki(){
+
+        List<WikiInfo> resList = wikiService.searchWikiInfo("test");
+
+        assertTrue(resList.size() == 1);
+
+    }
+
 }

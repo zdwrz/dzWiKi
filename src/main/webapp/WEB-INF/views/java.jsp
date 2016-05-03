@@ -2,6 +2,7 @@
 <%@include file="/WEB-INF/includes/create_new_body.jsp"%>
 <%@include file="/WEB-INF/includes/update.jsp"%>
 <%@include file="/WEB-INF/includes/deleteDialog.jsp"%>
+<%@include file="/WEB-INF/includes/login.jsp"%>
 
 <div class="container" id="main_container">
 

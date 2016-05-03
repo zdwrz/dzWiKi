@@ -43,14 +43,21 @@ $(window).load(function(){
     (function(){
         $('#edit_read_button').on(
             'click', function(){
-                $("#new_wiki_link").toggle();
-                if ( $(this).text()== "Edit Mode") {
+                if ( $(this).text()== "Read Mode") {
+                    //$('#login_wiki_modal_dialog').modal('toggle');
+                    $('.login').fadeToggle('slow');
+                }else{
                     $(this).text('Read Mode');
                     window.enableEdit = false;
-                }else{
-                    $(this).text('Edit Mode');
-                    window.enableEdit = true;
                 }
+                // $("#new_wiki_link").toggle();
+                // if ( $(this).text()== "Edit Mode") {
+                //     $(this).text('Read Mode');
+                //     window.enableEdit = false;
+                // }else{
+                //     $(this).text('Edit Mode');
+                //     window.enableEdit = true;
+                // }
             }
         );
     })();
@@ -100,19 +107,25 @@ $(function(){
 
     $('#search_button').click(function(){
         var search_input = $('#search_input').val();
+        if(search_input.trim() == ""){
+            $("#error_msg").text('Nothing to search').fadeIn( 100 ).delay(400).fadeOut( 400 );
+            return;
+        }
         $.ajax({
             type: 'POST',
             dataType:'json',
             url: '/wiki/search/',
             data: {"searchInput":search_input},
             success: function (msg) {
+                removeAllContent();
+                if(msg.length < 1){ $("#error_msg").text('No Result').fadeIn( 200 ).delay(800).fadeOut( 400 );return;}
                 msg.forEach(function(item){
                     // if(item.id == 0){window.stopload = true; return false;}
                     // var new_element = $('<div class="bs-docs-section clearfix"> </div>');
                     // new_element.append('<div class="row"><div class="col-lg-12"><div class="page-header wiki-title" ><h3 class="bs-component" id="'+ item.id +'">'+item.title+'</h3></div></div></div>');
                     // new_element.append('<div class="row"><div class="col-lg-12"><div class="content_wiki" ><p class="content_desc" >'+ item.wikiContentBrief+' </p><p class="content_full" style="display: none" id="full_content_'+item.id+'">'+item.wikiContent+'</p> <span class="more">more...</span></div></div></div>');
                     // new_element.hide().appendTo('#main_container').fadeIn();
-                    alert('got this many' + item.size());
+                    updateNewContents(item);
                 });
             },
             error: function( jqXHR, textStatus){
@@ -127,7 +140,10 @@ $(function(){
     });
 
 });
-
+function removeAllContent() {
+    window.stopload = true;
+    $(".bs-docs-section").fadeOut(200);
+}
 function updateNewContents(msg) {
     var $newWiki = $("<div class='bs-docs-section clearfix'> <div class='row'> <div class='col-lg-12'> " +
         "<div class='page-header wiki-title'><h3 class='bs-component' id='title_"+msg.id+"'>"+ msg.wikiTitle + "</h3> </div> </div></div> " +
@@ -186,7 +202,7 @@ $(function () {
             },
             error: function( jqXHR, textStatus, errorThrown){
                 if(textStatus == 'timeout'){
-                    $("#error_msg").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+                    $("#error_msg").text("Error in Create New Wiki,").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
                     submit_button.button('reset');
                     $("#create_new_form :input").prop("disabled", false);
                 }else{
@@ -221,7 +237,7 @@ $(function () {
             },
             error: function( jqXHR, textStatus, errorThrown){
                 if(textStatus == 'timeout'){
-                    $("#error_msg").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+                    $("#error_msg").text("Error in Deleting.").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
                     delete_button.button('reset');
                 }else{
                     alert(textStatus + jqXHR + errorThrown);
@@ -261,7 +277,7 @@ $(function () {
             },
             error: function( jqXHR, textStatus, errorThrown){
                 if(textStatus == 'timeout'){
-                    $("#error_msg").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+                    $("#error_msg").text("Error in Updating").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
                     update_button.button('reset');
                 }else{
                     alert(textStatus + jqXHR + errorThrown);

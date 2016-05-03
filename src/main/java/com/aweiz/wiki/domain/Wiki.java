@@ -1,5 +1,8 @@
 package com.aweiz.wiki.domain;
 
+import org.springframework.data.mongodb.core.index.TextIndexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Date;
 
 /**

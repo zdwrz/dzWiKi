@@ -4,10 +4,13 @@ import com.aweiz.wiki.domain.Wiki;
 import com.aweiz.wiki.utility.Constants;
 import com.aweiz.wiki.utility.WikiInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.TextCriteria;
+import org.springframework.data.mongodb.core.query.TextQuery;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -64,6 +67,12 @@ public class WikiDAOImpl implements WikiDAO {
 
     @Override
     public List<Wiki> searchWikiByKeyword(String key) {
-        return null;
+        TextCriteria criteria = TextCriteria.forDefaultLanguage()
+                .matchingAny(key);
+        Query query = TextQuery.queryText(criteria)
+                .sortByScore()
+                .with(new PageRequest(0, 15));
+        query.with(new Sort(new Sort.Order(Sort.Direction.DESC, Constants.ORDER_TOUCHED_DATE)));
+        return mongoTemp.find(query,Wiki.class);
     }
 }
