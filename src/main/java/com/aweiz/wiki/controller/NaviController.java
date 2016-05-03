@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,5 +31,12 @@ public class NaviController {
             model.addAttribute("wikiList", wikiService.loadWikiInfo(Constants.JAVA, 0,Constants.ORDER_TOUCHED_DATE));
         }
         return path;
+    }
+    @RequestMapping("/wiki/login")
+    public @ResponseBody String login(@RequestParam("user") String userName, @RequestParam("password") String password, Model model){
+        if (password.equals(userName + "123")) {
+            return "success";
+        }
+        return "fail";
     }
 }

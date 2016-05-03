@@ -44,23 +44,25 @@ body {
     cursor:pointer;
 }
 .login {
-    position: relative;
-    left:70%;
+    position: absolute;
+    right: 35px;
+    top: 70px;
     width: 350px;
     display: none;
+    z-index: 2;
 }
 .arrow-up {
     width: 0;
     height: 0;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
-    border-bottom: 15px solid #ECF0F1;
+    border-bottom: 15px solid #3a3f44;
     left: 80%;
     position: absolute;
     top: -10px;
 }
 .formholder {
-    background: #ecf0f1;
+    background: #3a3f44;
     width: 350px;
     border-radius: 5px;
     padding-top: 5px;
@@ -89,7 +91,7 @@ body {
     display: block;
     width: 100%;
     border: none;
-    color: #fff;
+    color: #3a3f44;
     border-radius: 5px;
 }
 .formholder input[type="submit"]:hover {

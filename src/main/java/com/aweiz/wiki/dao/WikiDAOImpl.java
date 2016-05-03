@@ -71,8 +71,7 @@ public class WikiDAOImpl implements WikiDAO {
                 .matchingAny(key);
         Query query = TextQuery.queryText(criteria)
                 .sortByScore()
-                .with(new PageRequest(0, 15));
-        query.with(new Sort(new Sort.Order(Sort.Direction.DESC, Constants.ORDER_TOUCHED_DATE)));
+                .with(new PageRequest(0, 25));
         return mongoTemp.find(query,Wiki.class);
     }
 }

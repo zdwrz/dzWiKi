@@ -44,11 +44,11 @@ $(window).load(function(){
         $('#edit_read_button').on(
             'click', function(){
                 if ( $(this).text()== "Read Mode") {
-                    //$('#login_wiki_modal_dialog').modal('toggle');
-                    $('.login').fadeToggle('slow');
+                    $('.login').fadeToggle();
                 }else{
                     $(this).text('Read Mode');
                     window.enableEdit = false;
+                    $("#new_wiki_link").toggle();
                 }
                 // $("#new_wiki_link").toggle();
                 // if ( $(this).text()== "Edit Mode") {
@@ -61,8 +61,7 @@ $(window).load(function(){
             }
         );
     })();
-});//]]>
-
+});
 
 window.wikiId = 0;
 
@@ -247,6 +246,43 @@ $(function () {
             timeout: 10000
         });
     });
+ $('#login_form').on('submit', function (e) {
+        var login_button = $(this).find("#login_button");
+        //give button loading state
+        login_button.button('loading');
+         var userName = $("#login_user").val();
+         var password = $("#login_pwd").val();
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            dataType:'text',
+            url: '/wiki/login/',
+            data: {"user":userName,"password":password},
+            success: function (msg) {
+                login_button.button('reset');
+                if(msg != "success"){
+                    $("#error_msg").text("Incorrect username/password.").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+                    return;
+                }
+                $(".login").fadeOut(100);
+                //clear
+                $('#login_form').find("input[type=text], textarea").val("");
+                $('#edit_read_button').text('Edit Mode');
+                window.enableEdit = true;
+                $("#new_wiki_link").toggle();
+            },
+            error: function( jqXHR, textStatus, errorThrown){
+                if(textStatus == 'timeout'){
+                    $("#error_msg").text("Error in Login.").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+                    login_button.button('reset');
+                }else{
+                    alert(textStatus + jqXHR + errorThrown);
+                    login_button.button('reset');
+                }
+            },
+            timeout: 10000
+        });
+    });
 
     $('#update_form').on('submit', function (e) {
         var update_button = $(this).find("#save_update_button");
@@ -291,3 +327,15 @@ $(function () {
 
 });
 
+$(document).mouseup(function (e)
+{
+    var container = $(".login");
+    var link = $('#edit_read_button');
+    if (!container.is(e.target) // if the target of the click isn't the container...
+        && container.has(e.target).length === 0// ... nor a descendant of the container
+        && !link.is(e.target))  //nor the link
+    {
+            container.fadeOut();
+    }
+});
+//]]>
