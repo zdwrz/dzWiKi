@@ -12,6 +12,7 @@ $(window).load(function(){
         if($(window).scrollTop() + $(window).height() == $(document).height()) {
             if(window.loadingNew || window.stopload){ return ;}
             window.loadingNew = true;
+            alert(window.submit_token);
             $.ajax({
                 type: 'POST',
                 dataType:'json',
@@ -50,14 +51,6 @@ $(window).load(function(){
                     window.enableEdit = false;
                     $("#new_wiki_link").toggle();
                 }
-                // $("#new_wiki_link").toggle();
-                // if ( $(this).text()== "Edit Mode") {
-                //     $(this).text('Read Mode');
-                //     window.enableEdit = false;
-                // }else{
-                //     $(this).text('Edit Mode');
-                //     window.enableEdit = true;
-                // }
             }
         );
     })();
@@ -110,6 +103,7 @@ $(function(){
             $("#error_msg").text('Nothing to search').fadeIn( 100 ).delay(400).fadeOut( 400 );
             return;
         }
+        alert(window.submit_token);
         $.ajax({
             type: 'POST',
             dataType:'json',
@@ -145,9 +139,9 @@ function removeAllContent() {
 }
 function updateNewContents(msg) {
     var $newWiki = $("<div class='bs-docs-section clearfix'> <div class='row'> <div class='col-lg-12'> " +
-        "<div class='page-header wiki-title'><h3 class='bs-component' id='title_"+msg.id+"'>"+ msg.wikiTitle + "</h3> </div> </div></div> " +
+        "<div class='page-header wiki-title'><h3 class='bs-component' id='"+msg.id+"'>"+ msg.wikiTitle + "</h3> </div> </div></div> " +
         "<div class='row'> <div class='col-lg-12'> " +
-        "<div class='content_wiki'> <p class='content_desc'>" + msg.wikiContentBrief + "</p> <p class='content_full' style='display: none'>"+ msg.wikiContent+"</p> <span class='more'>more...</span></div> </div> </div> </div>").hide().fadeIn(800);
+        "<div class='content_wiki'> <p class='content_desc'>" + msg.wikiContentBrief + "</p> <p class='content_full' style='display: none' id='full_content_"+msg.id+"'>"+ msg.wikiContent+"</p> <span class='more'>more...</span></div> </div> </div> </div>").hide().fadeIn(800);
 
     $('#banner').after($newWiki);
 
@@ -179,6 +173,7 @@ $(function () {
         var priority = $("#priorityDiv input[type='radio']:checked").val();
         var label = $("#label").val();
         var category = $("#category").val();
+        alert(window.submit_token);
         $.ajax({
             type: 'POST',
             dataType:'json',
@@ -216,7 +211,7 @@ $(function () {
         var delete_button = $(this).find("#delete_yes_button");
         //give button loading state
         delete_button.button('loading');
-
+        alert(window.submit_token);
         e.preventDefault();
         $.ajax({
             type: 'POST',
@@ -253,6 +248,7 @@ $(function () {
          var userName = $("#login_user").val();
          var password = $("#login_pwd").val();
         e.preventDefault();
+     alert(window.submit_token);
         $.ajax({
             type: 'POST',
             dataType:'text',
@@ -293,6 +289,7 @@ $(function () {
         var title = $("#edit_title").val();
         var content = $("#edit_content").val();
         $("#update_form :input").prop("disabled", true);
+        alert(window.submit_token);
         $.ajax({
             type: 'POST',
             dataType:'json',

@@ -10,7 +10,7 @@
     <packaging>war</packaging>
 
     <build>
-        <finalName>dzWiki</finalName>
+        <finalName>ROOT</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>

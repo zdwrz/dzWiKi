@@ -2,8 +2,6 @@ package com.aweiz.wiki.controller;
 
 import com.aweiz.wiki.service.WikiService;
 import com.aweiz.wiki.utility.Constants;
-import com.aweiz.wiki.utility.WikiInfo;
-import com.sun.tools.internal.jxc.ap.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by daweizhuang on 4/26/16.
@@ -32,6 +28,14 @@ public class NaviController {
         }
         return path;
     }
+
+    @RequestMapping("/wiki/validateAccessCode")
+    public String validateAccessCode(@RequestParam("access_code") String code, Model model){
+        model.addAttribute("token","token123");
+        model.addAttribute("wikiList", wikiService.loadWikiInfo(Constants.JAVA, 0,Constants.ORDER_TOUCHED_DATE));
+        return "redirect:java";
+    }
+
     @RequestMapping("/wiki/login")
     public @ResponseBody String login(@RequestParam("user") String userName, @RequestParam("password") String password, Model model){
         if (password.equals(userName + "123")) {

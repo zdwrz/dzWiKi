@@ -39,3 +39,4 @@
 
 </div>
 <%@include file="/WEB-INF/includes/footer.jsp"%>
+<script>window.submit_token = '${param["token"]}';</script>
