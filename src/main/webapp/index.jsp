@@ -16,6 +16,11 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Access</h4>
                 </div>
+                <c:if test="${param['error']}">
+                    <div class="alert alert-danger">
+                        The code is invalid. Please input a valid access code.
+                    </div>
+                </c:if>
                 <form id="access_form" class="form-horizontal"  method="post" action="/validateAccessCode">
                     <div class="modal-body">
                         <fieldset>
@@ -25,6 +30,7 @@
                                     <input type="text" class="form-control" id="access_code" name="access_code" placeholder="Access Code" required="true">
                                 </div>
                             </div>
+
                         </fieldset>
                     </div>
                     <div class="modal-footer">

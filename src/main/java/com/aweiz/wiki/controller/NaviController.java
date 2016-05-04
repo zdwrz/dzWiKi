@@ -33,9 +33,16 @@ public class NaviController {
 
     @RequestMapping("/validateAccessCode")
     public String validateAccessCode(@RequestParam("access_code") String code, Model model){
-        model.addAttribute("token", TokenRepository.getInstance().generateToken());
-        model.addAttribute("wikiList", wikiService.loadWikiInfo(Constants.JAVA, 0,Constants.ORDER_TOUCHED_DATE));
-        return "redirect:/wiki/java";
+        String res = "redirect:/wiki/java";
+        if(!"0216".equals(code)){
+            model.addAttribute("error",true);
+            res = "redirect:/";
+            LOGGER.warn("Invalid access code :" + code);
+        }else {
+            model.addAttribute("token", TokenRepository.getInstance().generateToken());
+            model.addAttribute("wikiList", wikiService.loadWikiInfo(Constants.JAVA, 0, Constants.ORDER_TOUCHED_DATE));
+        }
+        return res;
     }
 
     @RequestMapping("/wiki/login")
