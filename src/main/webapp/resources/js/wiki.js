@@ -12,12 +12,12 @@ $(window).load(function(){
         if($(window).scrollTop() + $(window).height() == $(document).height()) {
             if(window.loadingNew || window.stopload){ return ;}
             window.loadingNew = true;
-            alert(window.submit_token);
+            if(!checkToken()){return;}
             $.ajax({
                 type: 'POST',
                 dataType:'json',
                 url: '/wiki/loadMore/',
-                data: {"dataOffSet":dataOffSet},
+                data: {"dataOffSet":dataOffSet,"token":window.submit_token},
                 success: function (msg) {
                     window.dataOffSet += 10;
                     msg.forEach(function(item){
@@ -31,8 +31,11 @@ $(window).load(function(){
                 error: function( jqXHR, textStatus){
                     if(textStatus == 'timeout'){
                         $("#error_msg").text('Cannot Load new records. Timeout.').fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
-                    }else{
-                        alert(textStatus);
+                    }
+                },
+                statusCode: {
+                    333: function () {
+                        invalidToken();
                     }
                 },
                 timeout: 10000
@@ -98,17 +101,17 @@ $(function(){
     });
 
     $('#search_button').click(function(){
+        if(!checkToken()){return;}
         var search_input = $('#search_input').val();
         if(search_input.trim() == ""){
             $("#error_msg").text('Nothing to search').fadeIn( 100 ).delay(400).fadeOut( 400 );
             return;
         }
-        alert(window.submit_token);
         $.ajax({
             type: 'POST',
             dataType:'json',
             url: '/wiki/search/',
-            data: {"searchInput":search_input},
+            data: {"searchInput":search_input,"token":window.submit_token},
             success: function (msg) {
                 removeAllContent();
                 if(msg.length < 1){ $("#error_msg").text('No Result').fadeIn( 200 ).delay(800).fadeOut( 400 );return;}
@@ -124,8 +127,11 @@ $(function(){
             error: function( jqXHR, textStatus){
                 if(textStatus == 'timeout'){
                     $("#error_msg").text('Error in Search, Timeout.').fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
-                }else{
-                    alert(textStatus);
+                }
+            },
+            statusCode: {
+                333: function () {
+                    invalidToken();
                 }
             },
             timeout: 10000
@@ -155,10 +161,21 @@ function updateDeleteContents(msg) {
     $("#" + msg.id).closest(".bs-docs-section").fadeOut(800);
 
 }
-
+function checkToken(){
+    if(window.submit_token ==''){
+        $("#error_msg").text("Cannot submit without giving access code.").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+        return false;
+    }
+    return true;
+}
+function invalidToken(){
+    $("#error_msg").text("Invalid Token used.").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+}
 $(function () {
 
     $('#create_new_form').on('submit', function (e) {
+        e.preventDefault();
+        if(!checkToken()){return;}
 
         //save button so we can use later
         var submit_button = $(this).find("#save_new_button");
@@ -166,19 +183,17 @@ $(function () {
         //give button loading state
         submit_button.button('loading');
         $("#create_new_form :input").prop("disabled", true);
-        e.preventDefault();
 
         var title = $("#title").val();
         var content = $("#content").val();
         var priority = $("#priorityDiv input[type='radio']:checked").val();
         var label = $("#label").val();
         var category = $("#category").val();
-        alert(window.submit_token);
         $.ajax({
             type: 'POST',
             dataType:'json',
             url: '/wiki/save/',
-            data: {"title":title,"content":content,"priority":priority,"label":label,"category":category},
+            data: {"title":title,"content":content,"priority":priority,"label":label,"category":category,"token":window.submit_token},
             success: function (msg) {
                 //clear the form
                 $('#create_new_form').find("input[type=text], textarea").val("");
@@ -199,8 +214,11 @@ $(function () {
                     $("#error_msg").text("Error in Create New Wiki,").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
                     submit_button.button('reset');
                     $("#create_new_form :input").prop("disabled", false);
-                }else{
-                    alert(textStatus);
+                }
+            },
+            statusCode: {
+                333: function () {
+                    invalidToken();
                 }
             },
             timeout: 10000
@@ -208,16 +226,16 @@ $(function () {
     });
 
     $('#delete_form').on('submit', function (e) {
+        e.preventDefault();
+        if(!checkToken()){return;}
         var delete_button = $(this).find("#delete_yes_button");
         //give button loading state
         delete_button.button('loading');
-        alert(window.submit_token);
-        e.preventDefault();
         $.ajax({
             type: 'POST',
             dataType:'json',
             url: '/wiki/delete/',
-            data: {"id":wikiId},
+            data: {"id":wikiId,"token":window.submit_token},
             success: function (msg) {
                 //close the dialog
                 $('#delete_wiki_modal_dialog').modal('toggle');
@@ -234,26 +252,30 @@ $(function () {
                     $("#error_msg").text("Error in Deleting.").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
                     delete_button.button('reset');
                 }else{
-                    alert(textStatus + jqXHR + errorThrown);
                     delete_button.button('reset');
+                }
+            },
+            statusCode: {
+                333: function () {
+                    invalidToken();
                 }
             },
             timeout: 10000
         });
     });
  $('#login_form').on('submit', function (e) {
+        e.preventDefault();
+        if(!checkToken()){return;}
         var login_button = $(this).find("#login_button");
         //give button loading state
         login_button.button('loading');
          var userName = $("#login_user").val();
          var password = $("#login_pwd").val();
-        e.preventDefault();
-     alert(window.submit_token);
         $.ajax({
             type: 'POST',
             dataType:'text',
             url: '/wiki/login/',
-            data: {"user":userName,"password":password},
+            data: {"user":userName,"password":password,"token":window.submit_token},
             success: function (msg) {
                 login_button.button('reset');
                 if(msg != "success"){
@@ -272,8 +294,12 @@ $(function () {
                     $("#error_msg").text("Error in Login.").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
                     login_button.button('reset');
                 }else{
-                    alert(textStatus + jqXHR + errorThrown);
                     login_button.button('reset');
+                }
+            },
+            statusCode: {
+                333: function () {
+                    invalidToken();
                 }
             },
             timeout: 10000
@@ -281,20 +307,20 @@ $(function () {
     });
 
     $('#update_form').on('submit', function (e) {
+        e.preventDefault();
+        if(!checkToken()){return;}
         var update_button = $(this).find("#save_update_button");
         //give button loading state
         update_button.button('loading');
 
-        e.preventDefault();
         var title = $("#edit_title").val();
         var content = $("#edit_content").val();
         $("#update_form :input").prop("disabled", true);
-        alert(window.submit_token);
         $.ajax({
             type: 'POST',
             dataType:'json',
             url: '/wiki/update/',
-            data: {"id":wikiId,"title":title,"content":content},
+            data: {"id":wikiId,"title":title,"content":content,"token":window.submit_token},
             success: function (msg) {
                 //clear
                 $('#update_form').find("input[type=text], textarea").val("");
@@ -313,10 +339,14 @@ $(function () {
                     $("#error_msg").text("Error in Updating").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
                     update_button.button('reset');
                 }else{
-                    alert(textStatus + jqXHR + errorThrown);
                     update_button.button('reset');
                 }
                 $("#update_form :input").prop("disabled", false);
+            },
+            statusCode: {
+                333: function () {
+                    invalidToken();
+                }
             },
             timeout: 10000
         });

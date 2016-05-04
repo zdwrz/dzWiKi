@@ -2,6 +2,8 @@ package com.aweiz.wiki.controller;
 
 import com.aweiz.wiki.service.WikiService;
 import com.aweiz.wiki.utility.Constants;
+import com.aweiz.wiki.utility.TokenRepository;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class NaviController {
-
+    private static Logger LOGGER = Logger.getLogger(NaviController.class);
     @Autowired
     private WikiService wikiService;
 
@@ -29,15 +31,16 @@ public class NaviController {
         return path;
     }
 
-    @RequestMapping("/wiki/validateAccessCode")
+    @RequestMapping("/validateAccessCode")
     public String validateAccessCode(@RequestParam("access_code") String code, Model model){
-        model.addAttribute("token","token123");
+        model.addAttribute("token", TokenRepository.getInstance().generateToken());
         model.addAttribute("wikiList", wikiService.loadWikiInfo(Constants.JAVA, 0,Constants.ORDER_TOUCHED_DATE));
-        return "redirect:java";
+        return "redirect:/wiki/java";
     }
 
     @RequestMapping("/wiki/login")
-    public @ResponseBody String login(@RequestParam("user") String userName, @RequestParam("password") String password, Model model){
+    public @ResponseBody String login(@RequestParam("user") String userName, @RequestParam("password") String password, @RequestParam("token") String token, Model model){
+        LOGGER.info("Got this from client: token : " + token);
         if (password.equals(userName + "123")) {
             return "success";
         }

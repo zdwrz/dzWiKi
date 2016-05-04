@@ -16,7 +16,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Access</h4>
                 </div>
-                <form id="access_form" class="form-horizontal"  method="post" action="/wiki/validateAccessCode">
+                <form id="access_form" class="form-horizontal"  method="post" action="/validateAccessCode">
                     <div class="modal-body">
                         <fieldset>
                             <div class="form-group">
