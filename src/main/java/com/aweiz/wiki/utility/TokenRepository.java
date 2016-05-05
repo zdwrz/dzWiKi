@@ -1,5 +1,6 @@
 package com.aweiz.wiki.utility;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import java.util.Calendar;
@@ -43,10 +44,8 @@ public class TokenRepository {
 
     public boolean validateToken(String token) {
         boolean res = false;
-        if(tokens.containsKey(token)){
-            if(tokens.get(token).after(new Date())){
-                res = true;
-            }
+        if(StringUtils.isNotEmpty(token) && tokens.containsKey(token) && tokens.get(token).after(new Date())){
+            res = true;
         }
         return res;
     }

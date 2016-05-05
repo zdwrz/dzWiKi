@@ -5,7 +5,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Create a New Wiki</h4>
             </div>
-            <form id="create_new_form" class="form-horizontal" action="/index.jsp" method="post">
+            <form id="create_new_form" class="form-horizontal" action="/WEB-INF/views/index.jsp" method="post">
             <div class="modal-body">
                     <fieldset>
                         <div class="form-group">

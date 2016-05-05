@@ -123,6 +123,10 @@ $(function(){
                     // new_element.hide().appendTo('#main_container').fadeIn();
                     updateNewContents(item);
                 });
+                var sideButton = $("#side_menu_button");
+                if(sideButton.attr("aria-expanded") === "true"){
+                    sideButton.trigger( "click" );
+                }
             },
             error: function( jqXHR, textStatus){
                 if(textStatus == 'timeout'){
