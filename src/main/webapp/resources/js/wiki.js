@@ -91,13 +91,16 @@ $(function(){
     });
 
     $('#main_container').on('click','.more',function(){
-        $(this).siblings(".content_full").toggle();
-        $(this).siblings(".content_desc").toggle();
-        if ( $(this).siblings(".content_full").css("display") == "none") {
-            $(this).text('More...');
-        }else{
-            $(this).text('Less...');
-        }
+        // $(this).siblings(".content_full").toggle();
+        // $(this).siblings(".content_desc").toggle();
+        // if ( $(this).siblings(".content_full").css("display") == "none") {
+        //     $(this).text('More...');
+        // }else{
+        //     $(this).text('Less...');
+        // }
+        var content = $(this).siblings(".content_full").text();
+        $("#more_content").val(content);
+        $('#more_modal_dialog').modal('toggle');
     });
 
     $('#search_button').click(function(){
@@ -157,7 +160,7 @@ function updateNewContents(msg) {
 
 }
 function updateEditContents(msg) {
-    updateDeleteContents(msg);
+    $("#" + msg.id).closest(".bs-docs-section").hide();
     updateNewContents(msg);
 }
 

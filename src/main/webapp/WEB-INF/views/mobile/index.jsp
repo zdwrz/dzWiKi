@@ -44,4 +44,5 @@
 <%@include file="/WEB-INF/includes/footer.jsp"%>
 <script>
     $("#access_wiki_modal_dialog").modal('toggle');
+    window.stopload = true;
 </script>

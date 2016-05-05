@@ -77,5 +77,24 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="more_modal_dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Detail</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="col-lg-10">
+                        <textarea class="form-control" readonly rows="20" id="more_content"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
