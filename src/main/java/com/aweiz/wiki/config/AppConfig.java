@@ -4,6 +4,8 @@ import com.mongodb.Mongo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.data.authentication.UserCredentials;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoClientFactoryBean;
@@ -17,6 +19,7 @@ import java.net.UnknownHostException;
  */
 @Configuration
 @ComponentScan(basePackages = { "com.aweiz.wiki" })
+@PropertySource("classpath:app.properties")
 public class AppConfig {
 
     /*
@@ -30,4 +33,10 @@ public class AppConfig {
     public @Bean MongoTemplate mongoTemplate() throws Exception {
         return new MongoTemplate(mongo(), "wiki");
     }
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
+
 }

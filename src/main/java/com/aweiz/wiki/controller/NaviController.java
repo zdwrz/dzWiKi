@@ -6,6 +6,7 @@ import com.aweiz.wiki.utility.TokenRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,10 @@ public class NaviController {
     private static Logger LOGGER = Logger.getLogger(NaviController.class);
     @Autowired
     private WikiService wikiService;
+    @Value("${appVersion}")
+    private String version;
+    @Value("${buildTime}")
+    private String buildTime;
 
     @RequestMapping("/")
     public String home( Model model, HttpServletRequest request){
@@ -33,6 +38,8 @@ public class NaviController {
             path = "mobile/" + path;
 
         }
+        request.getSession().setAttribute("version", version);
+        request.getSession().setAttribute("buildTime", buildTime);
         return path;
     }
 
