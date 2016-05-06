@@ -58,6 +58,7 @@
 </nav>
 <div class="alert-box success" id="success_msg">Successfully Created a new Wiki.</div>
 <div class="alert-box failure" id="error_msg">Fail</div>
+<div class="alert-box warning" id="warning_msg">Warning</div>
 <div class="modal fade" id="intro_modal_dialog">
     <div class="modal-dialog">
         <div class="modal-content">

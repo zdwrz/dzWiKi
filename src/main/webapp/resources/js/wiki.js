@@ -117,7 +117,7 @@ $(function(){
             data: {"searchInput":search_input,"token":window.submit_token},
             success: function (msg) {
                 removeAllContent();
-                if(msg.length < 1){ $("#error_msg").text('No Result').fadeIn( 200 ).delay(800).fadeOut( 400 );return;}
+                if(msg.length < 1){ $("#warning_msg").text('No Result').fadeIn( 200 ).delay(800).fadeOut( 400 );return;}
                 msg.forEach(function(item){
                     // if(item.id == 0){window.stopload = true; return false;}
                     // var new_element = $('<div class="bs-docs-section clearfix"> </div>');
