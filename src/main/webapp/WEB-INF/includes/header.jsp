@@ -90,7 +90,7 @@
                 <h4 class="modal-title">Detail</h4>
             </div>
             <div class="modal-body">
-                <textarea class="form-control" readonly="readonly" rows="20" id="more_content"></textarea>
+                <textarea class="form-control more_content_body" disabled rows="20" id="more_content"></textarea>
             </div>
         </div>
     </div>

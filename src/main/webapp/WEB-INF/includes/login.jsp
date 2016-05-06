@@ -13,7 +13,7 @@
                     <div class="form-group">
                         <label for="login_pwd" class="col-lg-4 control-label">Password</label>
                         <div class="col-lg-8">
-                            <input type="text" class="form-control" id="login_pwd" placeholder="Password">
+                            <input type="password" class="form-control" id="login_pwd" placeholder="Password">
                         </div>
                     </div>
                 </fieldset>

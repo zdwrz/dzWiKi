@@ -27,7 +27,7 @@
                             <div class="form-group">
                                 <label for="access_code" class="col-lg-4 control-label">Access Code</label>
                                 <div class="col-lg-8">
-                                    <input type="text" class="form-control" id="access_code" name="access_code" placeholder="Access Code" required="true">
+                                    <input type="password" class="form-control" id="access_code" name="access_code" placeholder="Access Code" required="true">
                                 </div>
                             </div>
 

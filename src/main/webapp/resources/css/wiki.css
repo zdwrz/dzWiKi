@@ -67,12 +67,12 @@ body {
     border-radius: 5px;
     padding-top: 5px;
 }
-.formholder input[type="email"], .formholder input[type="password"] {
+.formholder input[type="email"], .formholder input[type="password"], .formholder input[type="text"] {
     padding: 7px 5px;
     margin: 10px 0;
     width: 96%;
     display: block;
-    font-size: 18px;
+    font-size: 14px;
     border-radius: 5px;
     border: none;
     -webkit-transition: 0.3s linear;
@@ -101,4 +101,8 @@ body {
 .randompad {
     padding: 10px;
 }
-.form-control[readonly]{background-color: #ffffff;}
+.form-control[readonly]{background-color: #3a3f44;
+    color: #ffffff;}
+.form-control[disabled]{background-color: #3a3f44;
+    color: #ffffff;cursor: default;
+    border-color: #494854;}
