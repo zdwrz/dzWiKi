@@ -8,7 +8,7 @@
             <form id="delete_form" class="form-horizontal"  method="post">
                 <div class="modal-body">
                     <fieldset>
-                        <p class="col-lg-9 control-label">Are you sure you want to delete this Wiki?</p>
+                        <p class="col-lg-9 ">Are you sure you want to delete this Wiki?</p>
                     </fieldset>
                 </div>
                 <div class="modal-footer">

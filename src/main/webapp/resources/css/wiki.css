@@ -101,8 +101,19 @@ body {
 .randompad {
     padding: 10px;
 }
-.form-control[readonly]{background-color: #3a3f44;
-    color: #ffffff;}
-.form-control[disabled]{background-color: #3a3f44;
-    color: #ffffff;cursor: default;
-    border-color: #494854;}
+
+.form-control[readonly] {
+    background-color: #3a3f44;
+    color: #ffffff;
+}
+
+.form-control[disabled] {
+    background-color: #3a3f44;
+    color: #ffffff;
+    cursor: default;
+    border-color: #494854;
+}
+
+.flow_button {
+    position: absolute;
+}

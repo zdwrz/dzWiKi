@@ -63,7 +63,7 @@ window.wikiId = 0;
 
 $(function(){
     var $button = $("<div id='edit-button' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-pencil'></span>Edit</div>").click(function(event){
-        window.wikiId = $(this).siblings('.bs-component').attr('id');
+        window.wikiId = $(this).parent().siblings('.bs-component').attr('id');
         $('#update_wiki_modal_dialog').modal('toggle');
         var title = $("#"+wikiId).text();
         $("#edit_title").val(title);
@@ -74,14 +74,19 @@ $(function(){
         // alert(title);
     });
     var $button_delete = $("<div id='delete-button' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-trash'></span>Delete</div>").click(function(){
-        window.wikiId = $(this).siblings('.bs-component').attr('id');
+        window.wikiId = $(this).parent().siblings('.bs-component').attr('id');
         $('#delete_wiki_modal_dialog').modal('toggle');
     });
 
+    var $button_box = $("<div id='button_menu' class='flow_button'></div>");
+    $button_box.append($button);
+    $button_box.append($button_delete);
+
     $( "#main_container" ).on( "mouseenter", ".wiki-title", function(event) {
         if (enableEdit == true) {
-            $(this).append($button);
-            $(this).append($button_delete);
+            // $(this).append($button);
+            // $(this).append($button_delete);
+            $(this).append($button_box);
             $button.hide().fadeIn(300);
             $button_delete.hide().fadeIn(300);
         }
