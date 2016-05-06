@@ -285,10 +285,11 @@ $(function () {
             data: {"user":userName,"password":password,"token":window.submit_token},
             success: function (msg) {
                 login_button.button('reset');
-                if(msg != "success"){
+                if(msg == "fail"){
                     $("#error_msg").text("Incorrect username/password.").fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
                     return;
                 }
+                window.submit_token = msg;
                 $(".login").fadeOut(100);
                 //clear
                 $('#login_form').find("input[type=text], textarea").val("");

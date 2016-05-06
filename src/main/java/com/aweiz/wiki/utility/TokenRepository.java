@@ -49,4 +49,12 @@ public class TokenRepository {
         }
         return res;
     }
+
+    public boolean remove(String token) {
+        boolean res = false;
+        if(StringUtils.isNotEmpty(token) && tokens.containsKey(token)){
+            res = (tokens.remove(token) != null);
+        }
+        return res;
+    }
 }

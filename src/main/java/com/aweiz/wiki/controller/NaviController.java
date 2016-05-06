@@ -72,10 +72,12 @@ public class NaviController {
     }
 
     @RequestMapping("/wiki/login")
-    public @ResponseBody String login(@RequestParam("user") String userName, @RequestParam("password") String password, Model model){
-        LOGGER.info("Got this from client: userName : " + userName + " , password: " + password);
+    public @ResponseBody String login(@RequestParam("user") String userName, @RequestParam("password") String password, @RequestParam("token") String token){
+        LOGGER.info("Got this from client: userName : " + userName + " , password: " + password + ", token: " + token);
         if (password.equals(userName + "123")) {
-            return "success";
+            if(TokenRepository.getInstance().remove(token)) {
+                return TokenRepository.getInstance().generateToken();
+            }
         }
         return "fail";
     }

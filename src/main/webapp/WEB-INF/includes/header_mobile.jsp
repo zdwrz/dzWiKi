@@ -73,6 +73,9 @@
                     <small>Dawei Zhuang</small>
                 </blockquote>
             </div>
+            <div class="modal-footer">
+                <small>Version Id:${version} Build at:${buildTime}</small>
+            </div>
         </div>
     </div>
 </div>
