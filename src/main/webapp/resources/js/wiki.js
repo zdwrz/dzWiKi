@@ -70,8 +70,8 @@ $(function(){
         var content = $("#full_content_"+wikiId).text();
         $("#edit_content").val(content);
 
-       //edit_title.text(title);
-       // alert(title);
+        //edit_title.text(title);
+        // alert(title);
     });
     var $button_delete = $("<div id='delete-button' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-trash'></span>Delete</div>").click(function(){
         window.wikiId = $(this).siblings('.bs-component').attr('id');
@@ -86,8 +86,8 @@ $(function(){
             $button_delete.hide().fadeIn(300);
         }
     }).on( "mouseleave", ".wiki-title", function(event) {
-            $button.hide();
-            $button_delete.hide();
+        $button.hide();
+        $button_delete.hide();
     });
 
     $('#main_container').on('click','.more',function(){
@@ -270,14 +270,14 @@ $(function () {
             timeout: 10000
         });
     });
- $('#login_form').on('submit', function (e) {
+    $('#login_form').on('submit', function (e) {
         e.preventDefault();
         if(!checkToken()){return;}
         var login_button = $(this).find("#login_button");
         //give button loading state
         login_button.button('loading');
-         var userName = $("#login_user").val();
-         var password = $("#login_pwd").val();
+        var userName = $("#login_user").val();
+        var password = $("#login_pwd").val();
         $.ajax({
             type: 'POST',
             dataType:'text',
@@ -358,6 +358,10 @@ $(function () {
             timeout: 10000
         });
     });
+    $('#search_form').on('submit', function (e) {
+        e.preventDefault();
+        $('#search_button').click();
+    });
 
 });
 
@@ -369,7 +373,7 @@ $(document).mouseup(function (e)
         && container.has(e.target).length === 0// ... nor a descendant of the container
         && !link.is(e.target))  //nor the link
     {
-            container.fadeOut();
+        container.fadeOut();
     }
 });
 //]]>

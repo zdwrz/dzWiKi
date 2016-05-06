@@ -29,9 +29,9 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="/">Java</a></li>
-                <li><a href="/wiki/db">Database</a></li>
-                <li><a href="/wiki/java">Other</a></li>
+                <li><a href="/">All</a></li>
+                <%--<li><a href="/wiki/db">Database</a></li>--%>
+                <%--<li><a href="/wiki/java">Other</a></li>--%>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tools <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -43,7 +43,7 @@
                     </ul>
                 </li>
             </ul>
-            <form class="navbar-form navbar-left" role="search">
+            <form class="navbar-form navbar-left" role="search" id="search_form">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search" id="search_input"/>
                 </div>
