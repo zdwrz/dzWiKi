@@ -104,16 +104,34 @@ body {
 
 .form-control[readonly] {
     background-color: #3a3f44;
-    color: #ffffff;
+    color: #fffbe6;
 }
-
-.form-control[disabled] {
-    background-color: #3a3f44;
-    color: #ffffff;
+.more_content_body{
+    width:100%;
+    resize: none;
+}
+.more_content_body[disabled] {
+    background-color: #2e3338;
+    color: #fffbe6;
     cursor: default;
-    border-color: #494854;
+    border-color: #2e3338;
 }
-
 .flow_button {
     position: absolute;
+}
+.more_content_body::-webkit-scrollbar-track
+{
+    background-color: #2e3338;
+}
+
+.more_content_body::-webkit-scrollbar
+{
+    width: 4px;
+    background-color: #304154;
+}
+
+.more_content_body::-webkit-scrollbar-thumb
+{
+    background-color: #3a3f44;
+    border-radius: 4px;
 }

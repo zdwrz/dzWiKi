@@ -19,7 +19,7 @@
         <div class="bs-docs-section clearfix">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="page-header wiki-title" >
+                    <div class="page-header wiki-title">
                         <h3 class="bs-component" id="${wiki.id}">${wiki.wikiTitle}</h3>
                     </div>
                 </div>
