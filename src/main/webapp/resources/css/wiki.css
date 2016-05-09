@@ -102,17 +102,17 @@ body {
     padding: 10px;
 }
 
-.form-control[readonly] {
-    background-color: #3a3f44;
-    color: #fffbe6;
-}
+/*.form-control[readonly] {*/
+    /*background-color: #3a3f44;*/
+    /*color: #fffbe6;*/
+/*}*/
 .more_content_body{
     width:100%;
     resize: none;
 }
 .more_content_body[disabled] {
     background-color: #2e3338;
-    color: #fffbe6;
+    color: #bcbcbc;
     cursor: default;
     border-color: #2e3338;
 }
@@ -134,4 +134,20 @@ body {
 {
     background-color: #3a3f44;
     border-radius: 4px;
+}
+body::-webkit-scrollbar-track
+ {
+     background-color: #2e3338;
+ }
+
+body::-webkit-scrollbar
+{
+    width: 8px;
+    background-color: #304154;
+}
+
+body::-webkit-scrollbar-thumb
+{
+    background-color: #3a3f44;
+    border-radius: 8px;
 }
