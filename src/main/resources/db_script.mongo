@@ -1,0 +1,9 @@
+db.createCollection("email_template");
+
+db.getCollection("email_template").insert({
+    name:"wiki_notification",
+    to:"daweizhuang.work@gmail.com",
+    from:"AweizNotification",
+    subject:"Wiki is :Operation.",
+    message:"A wiki with title :title is :Operation."
+});

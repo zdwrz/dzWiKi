@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import java.util.List;
 
 /**
@@ -40,7 +41,8 @@ public class WikiController {
     public @ResponseBody WikiInfo updateWiki(WikiInfo form){
         LOGGER.info("Got this from client: " + form.getId() +" Content:" +form.getContent()+" Title: " + form.getTitle());
 
-        WikiInfo wi = wikiService.updateWiki(form.getWiki());
+        WikiInfo wi = null;
+        wi = wikiService.updateWiki(form.getWiki());
         return wi;
     }
     @RequestMapping(value="/loadMore", method = RequestMethod.POST)

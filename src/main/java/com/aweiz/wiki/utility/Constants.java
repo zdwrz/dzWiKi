@@ -7,4 +7,5 @@ public class Constants {
     public static final String JAVA = "Java";
     public static final int STEP_SIZE = 10;
     public static final String ORDER_TOUCHED_DATE = "touchedDate";
+    public static final String WIKI_NOTIFICATION_NAME = "wiki_notification";
 }

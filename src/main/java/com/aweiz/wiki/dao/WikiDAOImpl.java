@@ -1,5 +1,6 @@
 package com.aweiz.wiki.dao;
 
+import com.aweiz.wiki.domain.EmailTemplate;
 import com.aweiz.wiki.domain.Wiki;
 import com.aweiz.wiki.utility.Constants;
 import com.aweiz.wiki.utility.WikiInfo;
@@ -74,4 +75,12 @@ public class WikiDAOImpl implements WikiDAO {
                 .with(new PageRequest(0, 25));
         return mongoTemp.find(query,Wiki.class);
     }
+
+    @Override
+    public Wiki findWiki(String id) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("id").is(id));
+        return mongoTemp.findOne(query,Wiki.class);
+    }
+
 }

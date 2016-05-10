@@ -20,4 +20,6 @@ public interface WikiDAO {
     Wiki updateWiki(Wiki wiki);
 
     List<Wiki> searchWikiByKeyword(String key);
+
+    Wiki findWiki(String id);
 }

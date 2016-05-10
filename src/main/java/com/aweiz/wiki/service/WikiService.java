@@ -3,6 +3,7 @@ package com.aweiz.wiki.service;
 import com.aweiz.wiki.domain.Wiki;
 import com.aweiz.wiki.utility.WikiInfo;
 
+import javax.mail.MessagingException;
 import java.util.List;
 
 /**
@@ -20,4 +21,6 @@ public interface WikiService {
     WikiInfo updateWiki(Wiki wiki);
 
     List<WikiInfo> searchWikiInfo(String key);
+
+    Wiki loadWikiById(String id);
 }

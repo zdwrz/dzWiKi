@@ -1,5 +1,6 @@
 package com.aweiz.wiki.service;
 
+import com.aweiz.wiki.utility.WikiOperationType;
 import org.junit.Test;
 
 import java.util.Date;
@@ -14,6 +15,6 @@ public class CommonTest {
     public void test1(){
 //        Map<String, Date> tokens = new ConcurrentHashMap<>();
 //        tokens.containsKey(null);
-
+        System.out.println(WikiOperationType.CREATE.getValue());
     }
 }

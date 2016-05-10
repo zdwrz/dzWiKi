@@ -11,8 +11,11 @@ import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoClientFactoryBean;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.net.UnknownHostException;
+import java.util.Properties;
 
 /**
  * Created by daweizhuang on 4/27/16.
@@ -37,6 +40,21 @@ public class AppConfig {
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
+    }
+
+    @Bean
+    public static JavaMailSender getJavaMailSender(){
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+        mailSender.setUsername("aweiznotification@gmail.com");
+        mailSender.setPassword("2008912zdw");
+        Properties prop = new Properties();
+        prop.setProperty("mail.transport.protocol","smtp");
+        prop.setProperty("mail.smtp.auth","true");
+        prop.setProperty("mail.smtp.starttls.enable","true");
+        mailSender.setJavaMailProperties(prop);
+        return mailSender;
     }
 
 }
