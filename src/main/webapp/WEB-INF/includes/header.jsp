@@ -9,9 +9,8 @@
 
     <title>Aweiz Wiki</title>
     <meta name="description" content="Aweiz" />
-    <meta name="keywords" content="DzTools" />
+    <meta name="keywords" content="Aweiz wiki" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=9" />
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -48,6 +47,7 @@
                     <input type="text" class="form-control" placeholder="Search" id="search_input"/>
                 </div>
                 <button type="button" class="btn btn-default" id="search_button"><span class="glyphicon glyphicon-search"></span></button>
+                <button type="button" class="btn btn-default" id="search_reset_button"><span class="glyphicon glyphicon-repeat"></span></button>
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li id="new_wiki_link" style="display: none"><a href="#" data-toggle="modal" data-target="#new_wiki_modal_dialog"><span class='glyphicon glyphicon-plus'></span>New Wiki</a></li>

@@ -1,3 +1,5 @@
+use wiki;
+
 db.createCollection("email_template");
 
 db.getCollection("email_template").insert({

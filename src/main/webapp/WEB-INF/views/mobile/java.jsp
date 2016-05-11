@@ -1,4 +1,4 @@
-<%@include file="/WEB-INF/includes/header_mobile.jsp"%>
+<%@include file="/WEB-INF/includes/header.jsp"%>
 <%@include file="/WEB-INF/includes/create_new_body.jsp"%>
 <%@include file="/WEB-INF/includes/update.jsp"%>
 <%@include file="/WEB-INF/includes/deleteDialog.jsp"%>

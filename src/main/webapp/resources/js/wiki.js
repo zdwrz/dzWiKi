@@ -10,37 +10,7 @@ window.stopload = false;
 $(window).load(function(){
     $(window).scroll(function() {
         if($(window).scrollTop() + $(window).height() == $(document).height()) {
-            if(window.loadingNew || window.stopload){ return ;}
-            window.loadingNew = true;
-            if(!checkToken()){return;}
-            $.ajax({
-                type: 'POST',
-                dataType:'json',
-                url: '/wiki/loadMore/',
-                data: {"dataOffSet":dataOffSet,"token":window.submit_token},
-                success: function (msg) {
-                    window.dataOffSet += 10;
-                    msg.forEach(function(item){
-                        if(item.id == 0){window.stopload = true; return false;}
-                        var new_element = $('<div class="bs-docs-section clearfix"> </div>');
-                        new_element.append('<div class="row"><div class="col-lg-12"><div class="page-header wiki-title" ><h3 class="bs-component" id="'+ item.id +'">'+item.title+'</h3></div></div></div>');
-                        new_element.append('<div class="row"><div class="col-lg-12"><div class="content_wiki" ><p class="content_desc" >'+ item.wikiContentBrief+' </p><p class="content_full" style="display: none" id="full_content_'+item.id+'">'+item.wikiContent+'</p> <span class="more">more...</span></div></div></div>');
-                        new_element.hide().appendTo('#main_container').fadeIn();
-                    });
-                },
-                error: function( jqXHR, textStatus){
-                    if(textStatus == 'timeout'){
-                        $("#error_msg").text('Cannot Load new records. Timeout.').fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
-                    }
-                },
-                statusCode: {
-                    333: function () {
-                        invalidToken();
-                    }
-                },
-                timeout: 10000
-            });
-            window.loadingNew = false;
+            loadMore();
         }
     });
 
@@ -58,7 +28,39 @@ $(window).load(function(){
         );
     })();
 });
-
+function loadMore(){
+    if(window.loadingNew || window.stopload){ return ;}
+    window.loadingNew = true;
+    if(!checkToken()){return;}
+    $.ajax({
+        type: 'POST',
+        dataType:'json',
+        url: '/wiki/loadMore/',
+        data: {"dataOffSet":dataOffSet,"token":window.submit_token},
+        success: function (msg) {
+            window.dataOffSet += 10;
+            msg.forEach(function(item){
+                if(item.id == 0){window.stopload = true; return false;}
+                var new_element = $('<div class="bs-docs-section clearfix"> </div>');
+                new_element.append('<div class="row"><div class="col-lg-12"><div class="page-header wiki-title" ><h3 class="bs-component" id="'+ item.id +'">'+item.title+'</h3></div></div></div>');
+                new_element.append('<div class="row"><div class="col-lg-12"><div class="content_wiki" ><p class="content_desc" >'+ item.wikiContentBrief+' </p><p class="content_full" style="display: none" id="full_content_'+item.id+'">'+item.wikiContent+'</p> <span class="more">more...</span></div></div></div>');
+                new_element.hide().appendTo('#main_container').fadeIn();
+            });
+        },
+        error: function( jqXHR, textStatus){
+            if(textStatus == 'timeout'){
+                $("#error_msg").text('Cannot Load new records. Timeout.').fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+            }
+        },
+        statusCode: {
+            333: function () {
+                invalidToken();
+            }
+        },
+        timeout: 10000
+    });
+    window.loadingNew = false;
+}
 window.wikiId = 0;
 
 $(function(){
@@ -108,6 +110,21 @@ $(function(){
         $('#more_modal_dialog').modal('toggle');
     });
 
+    $('#search_reset_button').click(function(){
+        if(!checkToken()){return;}
+        var search_input = $('#search_input');
+        if(search_input.val() != null){
+            search_input.val("");
+        }
+        window.dataOffSet = 0;
+        window.stopload = false;
+        removeAllContent();
+        loadMore();
+        var sideButton = $("#side_menu_button");
+        if(sideButton.attr("aria-expanded") === "true"){
+            sideButton.trigger( "click" );
+        }
+    });
     $('#search_button').click(function(){
         if(!checkToken()){return;}
         var search_input = $('#search_input').val();
@@ -122,6 +139,7 @@ $(function(){
             data: {"searchInput":search_input,"token":window.submit_token},
             success: function (msg) {
                 removeAllContent();
+                window.stopload = true;
                 if(msg.length < 1){ $("#warning_msg").text('No Result').fadeIn( 200 ).delay(800).fadeOut( 400 );return;}
                 msg.forEach(function(item){
                     // if(item.id == 0){window.stopload = true; return false;}
@@ -152,7 +170,6 @@ $(function(){
 
 });
 function removeAllContent() {
-    window.stopload = true;
     $(".bs-docs-section").fadeOut(200);
 }
 function updateNewContents(msg) {

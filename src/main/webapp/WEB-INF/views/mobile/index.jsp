@@ -1,4 +1,4 @@
-<%@include file="/WEB-INF/includes/header_mobile.jsp"%>
+<%@include file="/WEB-INF/includes/header.jsp"%>
 
 <div class="container" id="main_container">
 
