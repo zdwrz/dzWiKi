@@ -3,6 +3,7 @@ package com.aweiz.wiki.service;
 import com.aweiz.wiki.domain.Wiki;
 import com.aweiz.wiki.test.AppTestConfig;
 import com.aweiz.wiki.utility.WikiInfo;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,8 @@ import java.util.List;
 public class WikiServiceImplTest {
     @Autowired
     private WikiService wikiService;
- //   @Test
+    @Test
+    @Ignore
     public void saveWiki() throws Exception {
         for(int i = 0 ; i < 30; i ++){
             Wiki wiki = new Wiki();
@@ -36,11 +38,22 @@ public class WikiServiceImplTest {
     }
 
     @Test
+    @Ignore
     public void textSearchWiki(){
 
         List<WikiInfo> resList = wikiService.searchWikiInfo("test");
 
-       // assertTrue(resList.size() == 1);
+        // assertTrue(resList.size() == 1);
+
+    }
+    @Test
+    @Ignore
+    public void deleteWiki(){
+
+    }
+    @Test
+    @Ignore
+    public void updateWiki(){
 
     }
 

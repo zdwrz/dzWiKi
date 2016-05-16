@@ -47,9 +47,7 @@ public class UITestForLogIn {
     public void inputAccessCodeTest1Wrongly(){
         boolean result;
         try {
-            driver.findElement(By.id("access_code")).sendKeys("antra");
-            driver.findElement(By.id("save_access_button")).click();
-            result = driver.findElement(By.className("alert-danger")).isDisplayed();
+            result = wrongAccessCode();
         } catch(Exception e) {
             e.printStackTrace();
             result = false;
@@ -57,18 +55,33 @@ public class UITestForLogIn {
         assertTrue(result);
     }
 
+
     @Test
     public void inputAccessCodeTest2Correctly(){
         boolean result;
         try {
-            driver.findElement(By.id("access_code")).sendKeys("0216");
-            driver.findElement(By.id("save_access_button")).click();
-            result = driver.findElement(By.className("bs-docs-section")).isDisplayed();
+            result = correctAccessCode();
         } catch(Exception e) {
             e.printStackTrace();
             result = false;
         }
         assertTrue(result);
+    }
+
+    private boolean wrongAccessCode() {
+        boolean result;
+        driver.findElement(By.id("access_code")).sendKeys("antra");
+        driver.findElement(By.id("save_access_button")).click();
+        result = driver.findElement(By.className("alert-danger")).isDisplayed();
+        return result;
+    }
+
+    private boolean correctAccessCode() {
+        boolean result;
+        driver.findElement(By.id("access_code")).sendKeys("0216");
+        driver.findElement(By.id("save_access_button")).click();
+        result = driver.findElement(By.className("bs-docs-section")).isDisplayed();
+        return result;
     }
 
 
