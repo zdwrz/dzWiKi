@@ -1,5 +1,6 @@
 package com.aweiz.wiki.service;
 
+import com.aweiz.wiki.controller.NaviController;
 import com.aweiz.wiki.dao.EmailDAO;
 import com.aweiz.wiki.domain.EmailTemplate;
 import com.aweiz.wiki.domain.Wiki;

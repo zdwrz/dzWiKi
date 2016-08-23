@@ -18,7 +18,7 @@
                         <div class="form-group">
                             <label for="content" class="col-lg-2 control-label">Content</label>
                             <div class="col-lg-10">
-                                <textarea class="form-control" rows="3" id="content" required="true"></textarea>
+                                <textarea class="form-control" rows="10" id="content" required="true"></textarea>
                                 <span class="help-block">Shine your mind, no bullshit.</span>
                             </div>
                         </div>
@@ -31,14 +31,12 @@
                                                checked=""/>
                                         Important
                                     </label>
-                                </div>
-                                <div class="radio">
+
                                     <label>
                                         <input type="radio" name="priority" id="priority2" value="middle"/>
                                         Middle
                                     </label>
-                                </div>
-                                <div class="radio">
+
                                     <label>
                                         <input type="radio" name="priority" id="priority3" value="low"/>
                                         Low
