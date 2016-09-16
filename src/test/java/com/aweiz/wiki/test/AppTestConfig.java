@@ -23,7 +23,7 @@ public class AppTestConfig {
 
     public @Bean
     Mongo mongo() throws Exception {
-        return new Mongo("localhost");
+        return new Mongo("localhost");1
     }
 
     public @Bean
