@@ -17,7 +17,7 @@ import java.util.Properties;
 @ComponentScan(basePackages = { "com.aweiz.wiki.dao","com.aweiz.wiki.service" })
 public class AppTestConfig {
 
-    /*
+    /*123
      * Use the standard Mongo driver API to create a com.mongodb.Mongo instance.
      */
 
