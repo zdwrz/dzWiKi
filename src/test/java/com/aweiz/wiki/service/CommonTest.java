@@ -9,8 +9,6 @@ import org.junit.Test;
 public class CommonTest {
     @Test
     public void test1(){
-//        Map<String, Date> tokens = new ConcurrentHashMap<>();
-//        tokens.containsKey(null);
         System.out.println(WikiOperationType.CREATE.getValue());
     }
 }
