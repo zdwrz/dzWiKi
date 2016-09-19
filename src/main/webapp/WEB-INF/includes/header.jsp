@@ -76,7 +76,7 @@
                 </blockquote>
             </div>
             <div class="modal-footer">
-                    <small>Version Id:${version} Build at:${buildTime}</small>
+                    <small>Version Id:${version} Build at:${buildTime}  - jenkins</small>
             </div>
         </div>
     </div>
